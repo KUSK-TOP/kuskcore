@@ -28,7 +28,7 @@ const (
 
 	// config parameter for coinbase reward
 	CoinbasePendingBlockNumber = uint64(10)
-	MinVoteOutputAmount        = uint64(100000000)
+	MinVoteOutputAmount        = uint64(1500000000000)
 
 	PayToWitnessPubKeyHashDataSize = 20
 	PayToWitnessScriptHashDataSize = 32
