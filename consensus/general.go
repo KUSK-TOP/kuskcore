@@ -23,7 +23,7 @@ const (
 	// These configs need add to casper config in elegant way
 	MaxNumOfValidators = int(1000000)
 	InitKUSKSupply     = 12000000000000000
-	RewardThreshold    = 1
+	RewardThreshold    = 0.5
 	BlockReward        = uint64(600000000)
 
 	// config parameter for coinbase reward
@@ -125,7 +125,7 @@ var MainNetParams = Params{
 	CasperConfig: CasperConfig{
 		BlockTimeInterval:   6000,
 		MaxTimeOffsetMs:     3000,
-		BlocksOfEpoch:       10,
+		BlocksOfEpoch:       100,
 		MinValidatorVoteNum: 3e12,
 		VotePendingBlockNums: []VotePendingBlockNum{
 			{BeginBlock: 0, EndBlock: math.MaxUint64, Num: defaultVotePendingNum},
