@@ -77,7 +77,7 @@ After that, you'll see `config.toml` generated, then launch the node.
 ### launch
 
 ``` bash
-$ ./kuskd node
+$ nohup ./kuskd node &
 ```
 
 available flags for `kuskd node`:
