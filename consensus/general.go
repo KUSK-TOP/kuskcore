@@ -21,8 +21,8 @@ const (
 	MaxGasAmount   = int64(300000)
 
 	// These configs need add to casper config in elegant way
-	MaxNumOfValidators = int(10)
-	InitKUSKSupply     = 1200000000000000
+	MaxNumOfValidators = int(10000000)
+	InitKUSKSupply     = 12000000000000000
 	RewardThreshold    = 0.5
 	BlockReward        = uint64(600000000)
 
@@ -125,8 +125,8 @@ var MainNetParams = Params{
 	CasperConfig: CasperConfig{
 		BlockTimeInterval:   6000,
 		MaxTimeOffsetMs:     3000,
-		BlocksOfEpoch:       10,
-		MinValidatorVoteNum: 1.5e12,
+		BlocksOfEpoch:       100,
+		MinValidatorVoteNum: 3e12,
 		VotePendingBlockNums: []VotePendingBlockNum{
 			{BeginBlock: 0, EndBlock: math.MaxUint64, Num: defaultVotePendingNum},
 		},
