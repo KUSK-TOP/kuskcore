@@ -29,7 +29,7 @@
     "account_id": "bd775113-49e0-4678-94bf-2b853f1afe80", // accountID
     "password": "123456",// The password corresponding to the account ID
     "reward_ratio": 20,// The percentage of a reward given to a voter per block
-    "mining_address": "sp1qfpgjve27gx0r9t7vud8vypplkzytgrvqr74rwz" // The address that receives the block reward, use the get-mining- address for mining address, for example, curl -x POST http://127.0.0.1:9889/get-mining-address -d '{}'
+    "mining_address": "sk1qfpgjve27gx0r9t7vud8vypplkzytgrvqr74rwz" // The address that receives the block reward, use the get-mining- address for mining address, for example, curl -x POST http://127.0.0.1:9889/get-mining-address -d '{}'
   }
 }
 ```
