@@ -23,7 +23,7 @@ const (
 	// These configs need add to casper config in elegant way
 	MaxNumOfValidators = int(1000000)
 	InitKUSKSupply     = 12000000000000000
-	RewardThreshold    = 0.5
+	RewardThreshold    = 1
 	BlockReward        = uint64(600000000)
 
 	// config parameter for coinbase reward
