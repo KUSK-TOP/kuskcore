@@ -125,7 +125,7 @@ var MainNetParams = Params{
 	CasperConfig: CasperConfig{
 		BlockTimeInterval:   6000,
 		MaxTimeOffsetMs:     3000,
-		BlocksOfEpoch:       100,
+		BlocksOfEpoch:       20,
 		MinValidatorVoteNum: 3e12,
 		VotePendingBlockNums: []VotePendingBlockNum{
 			{BeginBlock: 0, EndBlock: math.MaxUint64, Num: defaultVotePendingNum},
