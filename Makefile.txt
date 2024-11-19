@@ -9,13 +9,10 @@ $(error "$$GOOS is not defined. If you are using Windows, try to re-make using '
 endif
 endif
 
-PACKAGES    := $(shell go list ./... | grep -v '/vendor/' | grep -v '/crypto/ed25519/chainkd' | grep -v '/mining/tensority')
+PACKAGES    := $(shell go list ./... | grep -v '/vendor/' )
 PACKAGES += 'core/mining/tensority/go_algorithm'
 
 BUILD_FLAGS := -ldflags "-X core/version.GitCommit=`git rev-parse HEAD`"
-
-#MINER_BINARY32 := miner-$(GOOS)_386
-MINER_BINARY64 := miner-$(GOOS)_amd64
 
 #KUSKD_BINARY32 := kuskd-$(GOOS)_386
 KUSKD_BINARY64 := kuskd-$(GOOS)_amd64
