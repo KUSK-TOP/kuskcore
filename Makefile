@@ -11,7 +11,7 @@ endif
 
 PACKAGES    := $(shell go list ./... | grep -v '/lib/')
 
-BUILD_FLAGS := -ldflags "-X github.com/kusk/kusk/version.GitCommit=`git rev-parse HEAD`"
+BUILD_FLAGS := -ldflags "-X github.com/KUSK-TOP/kuskcore/version.GitCommit=`git rev-parse HEAD`"
 
 KUSKD_BINARY32 := kuskd-$(GOOS)_386
 KUSKD_BINARY64 := kuskd-$(GOOS)_amd64
