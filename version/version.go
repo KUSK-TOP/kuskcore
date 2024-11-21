@@ -130,7 +130,7 @@ func (s *UpdateStatus) CheckUpdate(localVerStr string, remoteVerStr string, remo
 			"Current version": localVerStr,
 			"Newer version":   remoteVerStr,
 			"seed":            remoteAddr,
-		}).Warn("Please update your kuskd via https://github.com/KUSK-TOP/kuskcore/releases/ or http://kusk.io/wallet/")
+		}).Warn("Please update your kuskd via https://github.com/KUSK-TOP/kuskcore/releases/ or http://kusk.top/")
 		s.notified = true
 	}
 	return nil
