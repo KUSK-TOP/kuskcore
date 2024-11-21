@@ -12,7 +12,7 @@ replace (
 )
 
 require (
-	github.com/btcsuite/btcd v0.21.0-beta // indirect
+	github.com/btcsuite/btcutil v1.0.2 // indirect
 	github.com/btcsuite/go-socks v0.0.0-20170105172521-4720035b7bfd
 	github.com/cespare/cp v1.1.1
 	github.com/davecgh/go-spew v1.1.1
@@ -21,9 +21,8 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
 	github.com/golang/protobuf v1.4.3
-	github.com/golang/snappy v0.0.3 // indirect
 	github.com/google/uuid v1.2.0
-	github.com/gorilla/websocket v1.4.2
+	github.com/gorilla/websocket v1.5.0
 	github.com/grandcat/zeroconf v0.0.0-20190424104450-85eadb44205c
 	github.com/hashicorp/go-version v1.3.0
 	github.com/holiman/uint256 v1.2.0
@@ -48,8 +47,8 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/jwalterweatherman v1.1.0
 	github.com/spf13/viper v1.7.1
-	github.com/stretchr/testify v1.7.0
-	github.com/syndtr/goleveldb v1.0.1-0.20200815110645-5c35d600f0ca
+	github.com/stretchr/testify v1.8.4
+	github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 	github.com/tendermint/ed25519 v0.0.0-20171027050219-d8387025d2b9
 	github.com/tendermint/go-crypto v0.2.0
 	github.com/tendermint/go-wire v0.16.0
@@ -63,5 +62,4 @@ require (
 	gopkg.in/fatih/set.v0 v0.1.0
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/karalabe/cookiejar.v2 v2.0.0-20150724131613-8dcd6a7f4951
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
