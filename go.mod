@@ -47,7 +47,7 @@ require (
 	github.com/lib/pq v1.1.1 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mattn/go-sqlite3 v1.13.0 // indirect
-	github.com/miekg/dns v1.1.15 // indirect
+	github.com/miekg/dns v1.1.25 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/onsi/ginkgo v1.11.0 // indirect
 	github.com/pborman/uuid v1.2.1
