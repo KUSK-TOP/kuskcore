@@ -73,7 +73,7 @@ release: binary
 endif
 
 release-all: clean
-	GOOS=darwin  make release
+	#GOOS=darwin  make release
 	GOOS=linux   make release
 	GOOS=windows make release
 
