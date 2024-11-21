@@ -6,9 +6,9 @@ import (
 	"net"
 	"time"
 
-	dbm "kuskcore/database/leveldb"
 	"github.com/tendermint/go-wire"
 	"github.com/tendermint/tmlibs/flowrate"
+	dbm "kuskcore/database/leveldb"
 
 	"kuskcore/consensus"
 	"kuskcore/event"

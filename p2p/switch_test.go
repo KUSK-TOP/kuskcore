@@ -37,6 +37,7 @@ The byte id and the relative priorities of each `Channel` are configured upon
 initialization of the connection.
 
 There are two methods for sending messages:
+
 	func (m MConnection) Send(chID byte, msgBytes []byte) bool {}
 	func (m MConnection) TrySend(chID byte, msgBytes []byte}) bool {}
 
@@ -125,7 +126,7 @@ func initSwitchFunc(sw *Switch) *Switch {
 	return sw
 }
 
-//Test connect self.
+// Test connect self.
 func TestFiltersOutItself(t *testing.T) {
 	t.Skip("due to fail on mac")
 	dirPath, err := ioutil.TempDir(".", "")

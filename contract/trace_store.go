@@ -29,7 +29,6 @@ func chainStatusKey() []byte {
 	return chainStatusPrefixKey
 }
 
-
 type TraceStore struct {
 	db dbm.DB
 }

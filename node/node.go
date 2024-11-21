@@ -11,8 +11,8 @@ import (
 	cmn "github.com/tendermint/tmlibs/common"
 	browser "github.com/toqueteos/webbrowser"
 
-	"kuskcore/proposal/blockproposer"
 	"github.com/prometheus/prometheus/util/flock"
+	"kuskcore/proposal/blockproposer"
 
 	"kuskcore/accesstoken"
 	"kuskcore/account"

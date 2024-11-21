@@ -8,7 +8,7 @@ import (
 	"kuskcore/protocol/bc"
 )
 
-//AnnotatedTx means an annotated transaction.
+// AnnotatedTx means an annotated transaction.
 type AnnotatedTx struct {
 	ID                     bc.Hash            `json:"tx_id"`
 	Timestamp              uint64             `json:"block_time"`
@@ -21,7 +21,7 @@ type AnnotatedTx struct {
 	Size                   uint64             `json:"size"`
 }
 
-//AnnotatedInput means an annotated transaction input.
+// AnnotatedInput means an annotated transaction input.
 type AnnotatedInput struct {
 	Type             string               `json:"type"`
 	AssetID          bc.AssetID           `json:"asset_id"`
@@ -44,7 +44,7 @@ type AnnotatedInput struct {
 	StateData []string `json:"state_data,omitempty"`
 }
 
-//AnnotatedOutput means an annotated transaction output.
+// AnnotatedOutput means an annotated transaction output.
 type AnnotatedOutput struct {
 	Type            string             `json:"type"`
 	OutputID        bc.Hash            `json:"id"`
@@ -65,7 +65,7 @@ type AnnotatedOutput struct {
 	StateData []string `json:"state_data,omitempty"`
 }
 
-//AnnotatedAccount means an annotated account.
+// AnnotatedAccount means an annotated account.
 type AnnotatedAccount struct {
 	ID         string         `json:"id"`
 	Alias      string         `json:"alias,omitempty"`
@@ -75,7 +75,7 @@ type AnnotatedAccount struct {
 	DeriveRule uint8          `json:"derive_rule"`
 }
 
-//AnnotatedAsset means an annotated asset.
+// AnnotatedAsset means an annotated asset.
 type AnnotatedAsset struct {
 	AnnotatedSigner
 	ID                bc.AssetID         `json:"id"`
@@ -87,7 +87,7 @@ type AnnotatedAsset struct {
 	LimitHeight       uint64             `json:"limit_height"`
 }
 
-//AnnotatedSigner means an annotated signer for asset.
+// AnnotatedSigner means an annotated signer for asset.
 type AnnotatedSigner struct {
 	Type       string         `json:"type"`
 	XPubs      []chainkd.XPub `json:"xpubs"`
@@ -96,7 +96,7 @@ type AnnotatedSigner struct {
 	DeriveRule uint8          `json:"derive_rule"`
 }
 
-//AnnotatedUTXO means an annotated utxo.
+// AnnotatedUTXO means an annotated utxo.
 type AnnotatedUTXO struct {
 	Alias               string `json:"account_alias"`
 	OutputID            string `json:"id"`

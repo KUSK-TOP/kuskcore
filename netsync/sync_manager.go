@@ -46,7 +46,7 @@ type Switch interface {
 	Peers() *p2p.PeerSet
 }
 
-//SyncManager Sync Manager is responsible for the business layer information synchronization
+// SyncManager Sync Manager is responsible for the business layer information synchronization
 type SyncManager struct {
 	config       *config.Config
 	sw           Switch
@@ -110,7 +110,7 @@ func (sm *SyncManager) IsListening() bool {
 
 }
 
-//IsCaughtUp check wheather the peer finish the sync
+// IsCaughtUp check wheather the peer finish the sync
 func (sm *SyncManager) IsCaughtUp() bool {
 	return sm.chainMgr.IsCaughtUp()
 }
@@ -146,12 +146,12 @@ func (sm *SyncManager) DialPeerWithAddress(addr *p2p.NetAddress) error {
 	return sm.sw.DialPeerWithAddress(addr)
 }
 
-//GetPeerInfos return peer info of all connected peers.
+// GetPeerInfos return peer info of all connected peers.
 func (sm *SyncManager) GetPeerInfos() []*peers.PeerInfo {
 	return sm.peers.GetPeerInfos()
 }
 
-//StopPeer try to stop peer by given ID
+// StopPeer try to stop peer by given ID
 func (sm *SyncManager) StopPeer(peerID string) error {
 	if peer := sm.peers.GetPeer(peerID); peer == nil {
 		return errors.New("peerId not exist")

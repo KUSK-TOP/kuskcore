@@ -77,7 +77,7 @@ var (
 	ErrNullAlias      = errors.New("null asset alias")
 )
 
-//NewRegistry create new registry
+// NewRegistry create new registry
 func NewRegistry(db dbm.DB, chain *protocol.Chain) *Registry {
 	initNativeAsset()
 	return &Registry{
@@ -101,7 +101,7 @@ type Registry struct {
 	assetMu      sync.Mutex
 }
 
-//Asset describe asset on kusk chain
+// Asset describe asset on kusk chain
 type Asset struct {
 	*signers.Signer
 	AssetID           bc.AssetID             `json:"id"`
@@ -256,7 +256,7 @@ func (reg *Registry) FindByAlias(alias string) (*Asset, error) {
 	return reg.FindByID(nil, assetID)
 }
 
-//GetAliasByID return asset alias string by AssetID string
+// GetAliasByID return asset alias string by AssetID string
 func (reg *Registry) GetAliasByID(id string) string {
 	//btm
 	if id == consensus.KUSKAssetID.String() {
@@ -374,7 +374,7 @@ func multisigIssuanceProgram(pubkeys []ed25519.PublicKey, nrequired int, blockHe
 	return prog, 1, err
 }
 
-//UpdateAssetAlias updates asset alias
+// UpdateAssetAlias updates asset alias
 func (reg *Registry) UpdateAssetAlias(id, newAlias string) error {
 	oldAlias := reg.GetAliasByID(id)
 	newAlias = strings.ToUpper(strings.TrimSpace(newAlias))

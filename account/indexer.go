@@ -24,7 +24,7 @@ func ContractUTXOKey(id bc.Hash) []byte {
 	return []byte(SUTXOPrefix + name)
 }
 
-//Annotated init an annotated account object
+// Annotated init an annotated account object
 func Annotated(a *Account) *query.AnnotatedAccount {
 	return &query.AnnotatedAccount{
 		ID:         a.ID,

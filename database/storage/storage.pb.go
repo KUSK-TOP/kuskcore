@@ -5,9 +5,11 @@
 Package storage is a generated protocol buffer package.
 
 It is generated from these files:
+
 	storage.proto
 
 It has these top-level messages:
+
 	UtxoEntry
 */
 package storage

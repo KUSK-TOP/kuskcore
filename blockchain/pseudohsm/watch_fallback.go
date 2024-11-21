@@ -1,3 +1,4 @@
+//go:build ios || (linux && arm64) || (!darwin && !freebsd && !linux && !netbsd && !solaris && !windows)
 // +build ios linux,arm64 !darwin,!freebsd,!linux,!netbsd,!solaris,!windows
 
 // This is the fallback implementation of directory watching.

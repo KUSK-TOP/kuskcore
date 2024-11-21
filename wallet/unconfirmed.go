@@ -165,7 +165,7 @@ func (w *Wallet) delExpiredTxs() error {
 	return nil
 }
 
-//delUnconfirmedTx periodically delete locally stored timeout did not confirm txs
+// delUnconfirmedTx periodically delete locally stored timeout did not confirm txs
 func (w *Wallet) delUnconfirmedTx() {
 	if err := w.delExpiredTxs(); err != nil {
 		log.WithFields(log.Fields{"module": logModule, "err": err}).Error("wallet fail on delUnconfirmedTx")

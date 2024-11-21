@@ -43,7 +43,7 @@ func (c *Chain) ValidateTx(tx *types.Tx) (bool, error) {
 	return c.txPool.ProcessTransaction(tx, bh.Height, gasStatus.KUSKValue)
 }
 
-//ProgramConverter convert program. Only for BCRP now
+// ProgramConverter convert program. Only for BCRP now
 func (c *Chain) ProgramConverter(prog []byte) ([]byte, error) {
 	hash, err := bcrp.ParseContractHash(prog)
 	if err != nil {

@@ -5,12 +5,12 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/davecgh/go-spew/spew"
+	"github.com/tendermint/tmlibs/flowrate"
 	"kuskcore/consensus"
 	"kuskcore/p2p/security"
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/bc/types"
-	"github.com/davecgh/go-spew/spew"
-	"github.com/tendermint/tmlibs/flowrate"
 )
 
 var (

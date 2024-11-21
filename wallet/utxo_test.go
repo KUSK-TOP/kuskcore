@@ -205,7 +205,7 @@ func TestGetAccountUtxos(t *testing.T) {
 	}
 }
 
-//because can not pass by btm2.0 branch
+// because can not pass by btm2.0 branch
 func TestFilterAccountUtxo(t *testing.T) {
 	testDB := dbm.NewDB("testdb", "leveldb", "temp")
 	defer os.RemoveAll("temp")

@@ -32,7 +32,7 @@ var (
 	errWalletVersionMismatch   = errors.New("wallet version mismatch")
 )
 
-//StatusInfo is base valid block info to handle orphan block rollback
+// StatusInfo is base valid block info to handle orphan block rollback
 type StatusInfo struct {
 	Version    uint
 	WorkHeight uint64
@@ -41,7 +41,7 @@ type StatusInfo struct {
 	BestHash   bc.Hash
 }
 
-//Wallet is related to storing account unspent outputs
+// Wallet is related to storing account unspent outputs
 type Wallet struct {
 	DB              dbm.DB
 	rw              sync.RWMutex
@@ -59,7 +59,7 @@ type Wallet struct {
 	rescanCh chan struct{}
 }
 
-//NewWallet return a new wallet instance
+// NewWallet return a new wallet instance
 func NewWallet(walletDB dbm.DB, account *account.Manager, asset *asset.Registry, contract *contract.Registry, hsm *pseudohsm.HSM, chain *protocol.Chain, dispatcher *event.Dispatcher, txIndexFlag bool) (*Wallet, error) {
 	w := &Wallet{
 		DB:              walletDB,
@@ -132,8 +132,8 @@ func (w *Wallet) checkWalletInfo() error {
 	return nil
 }
 
-//loadWalletInfo return stored wallet info and nil,
-//if error, return initial wallet info and err
+// loadWalletInfo return stored wallet info and nil,
+// if error, return initial wallet info and err
 func (w *Wallet) loadWalletInfo() error {
 	if rawWallet := w.DB.Get(walletKey); rawWallet != nil {
 		if err := json.Unmarshal(rawWallet, &w.status); err != nil {
@@ -221,7 +221,7 @@ func (w *Wallet) DetachBlock(block *types.Block) error {
 	return w.commitWalletInfo(storeBatch)
 }
 
-//WalletUpdate process every valid block and reverse every invalid block which need to rollback
+// WalletUpdate process every valid block and reverse every invalid block which need to rollback
 func (w *Wallet) walletUpdater() {
 	for {
 		w.getRescanNotification()
@@ -251,7 +251,7 @@ func (w *Wallet) walletUpdater() {
 	}
 }
 
-//RescanBlocks provide a trigger to rescan blocks
+// RescanBlocks provide a trigger to rescan blocks
 func (w *Wallet) RescanBlocks() {
 	select {
 	case w.rescanCh <- struct{}{}:

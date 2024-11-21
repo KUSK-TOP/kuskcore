@@ -5,9 +5,11 @@
 Package bc is a generated protocol buffer package.
 
 It is generated from these files:
+
 	bc.proto
 
 It has these top-level messages:
+
 	Hash
 	Program
 	AssetID

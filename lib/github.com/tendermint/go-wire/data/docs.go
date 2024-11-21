@@ -16,20 +16,20 @@ where there are many possible concrete types.
 go-wire handles this by registering the types and providing a custom
 deserializer:
 
-  var _ = wire.RegisterInterface(
-    struct{ PubKey }{},
-    wire.ConcreteType{PubKeyEd25519{}, PubKeyTypeEd25519},
-    wire.ConcreteType{PubKeySecp256k1{}, PubKeyTypeSecp256k1},
-  )
+	var _ = wire.RegisterInterface(
+	  struct{ PubKey }{},
+	  wire.ConcreteType{PubKeyEd25519{}, PubKeyTypeEd25519},
+	  wire.ConcreteType{PubKeySecp256k1{}, PubKeyTypeSecp256k1},
+	)
 
-  func PubKeyFromBytes(pubKeyBytes []byte) (pubKey PubKey, err error) {
-    err = wire.ReadBinaryBytes(pubKeyBytes, &pubKey)
-    return
-  }
+	func PubKeyFromBytes(pubKeyBytes []byte) (pubKey PubKey, err error) {
+	  err = wire.ReadBinaryBytes(pubKeyBytes, &pubKey)
+	  return
+	}
 
-  func (pubKey PubKeyEd25519) Bytes() []byte {
-    return wire.BinaryBytes(struct{ PubKey }{pubKey})
-  }
+	func (pubKey PubKeyEd25519) Bytes() []byte {
+	  return wire.BinaryBytes(struct{ PubKey }{pubKey})
+	}
 
 This prepends a type-byte to the binary representation upon serialization and
 using that byte to switch between various representations on deserialization.
@@ -39,10 +39,10 @@ limited relative to the standard library encoding/json library.
 
 In json, the typical idiom is to use a type string and message data:
 
-  {
-    "type": "this part tells you how to interpret the message",
-    "data": ...the actual message is here, in some kind of json...
-  }
+	{
+	  "type": "this part tells you how to interpret the message",
+	  "data": ...the actual message is here, in some kind of json...
+	}
 
 I took inspiration from two blog posts, that demonstrate how to use this
 to build (de)serialization in a go-wire like way.
@@ -61,17 +61,17 @@ You app needs to do three things to take full advantage of this:
 The benefits here is you can now run any of the following methods, both for
 efficient storage in our go app, and a common format for rpc / humans.
 
-  orig := FooerS{foo}
+	orig := FooerS{foo}
 
-  // read/write binary a la tendermint/go-wire
-  bparsed := FooerS{}
-  err := wire.ReadBinaryBytes(
-    wire.BinaryBytes(orig), &bparsed)
+	// read/write binary a la tendermint/go-wire
+	bparsed := FooerS{}
+	err := wire.ReadBinaryBytes(
+	  wire.BinaryBytes(orig), &bparsed)
 
-  // read/write json a la encoding/json
-  jparsed := FooerS{}
-  j, err := json.MarshalIndent(orig, "", "\t")
-  err = json.Unmarshal(j, &jparsed)
+	// read/write json a la encoding/json
+	jparsed := FooerS{}
+	j, err := json.MarshalIndent(orig, "", "\t")
+	err = json.Unmarshal(j, &jparsed)
 
 See https://github.com/tendermint/go-wire/data/blob/master/common_test.go to see
 how to set up your code to use this.

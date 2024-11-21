@@ -26,7 +26,7 @@ type blockFetcher struct {
 	msgCounter map[string]int        // per peer msg counter to prevent DOS
 }
 
-//NewBlockFetcher creates a block fetcher to retrieve blocks of the new propose.
+// NewBlockFetcher creates a block fetcher to retrieve blocks of the new propose.
 func newBlockFetcher(chain Chain, peers Peers) *blockFetcher {
 	return &blockFetcher{
 		chain:      chain,

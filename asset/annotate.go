@@ -14,7 +14,7 @@ func isValidJSON(b []byte) bool {
 	return err == nil
 }
 
-//Annotated annotate the asset
+// Annotated annotate the asset
 func Annotated(a *Asset) (*query.AnnotatedAsset, error) {
 	jsonDefinition := json.RawMessage(`{}`)
 

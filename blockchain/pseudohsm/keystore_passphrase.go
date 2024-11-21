@@ -16,12 +16,12 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	"kuskcore/crypto"
-	"kuskcore/crypto/ed25519/chainkd"
-	"kuskcore/crypto/randentropy"
 	"github.com/pborman/uuid"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/scrypt"
+	"kuskcore/crypto"
+	"kuskcore/crypto/ed25519/chainkd"
+	"kuskcore/crypto/randentropy"
 )
 
 const (

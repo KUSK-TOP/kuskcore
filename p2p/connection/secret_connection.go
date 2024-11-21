@@ -13,10 +13,10 @@ import (
 	"time"
 
 	log "github.com/sirupsen/logrus"
-	"kuskcore/crypto/ed25519/chainkd"
 	"golang.org/x/crypto/nacl/box"
 	"golang.org/x/crypto/nacl/secretbox"
 	"golang.org/x/crypto/ripemd160"
+	"kuskcore/crypto/ed25519/chainkd"
 
 	"github.com/tendermint/go-wire"
 	cmn "github.com/tendermint/tmlibs/common"

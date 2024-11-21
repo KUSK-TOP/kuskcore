@@ -1,3 +1,4 @@
+//go:build functional
 // +build functional
 
 package test
@@ -14,7 +15,8 @@ import (
 
 // case1:           |------c1(height=7)
 // --------(height=5)
-//                  |------------c2(height=9)
+//
+//	|------------c2(height=9)
 func TestForkCase1(t *testing.T) {
 	c1, err := declChain("chain1", nil, 0, 7)
 	defer os.RemoveAll("chain1")
@@ -44,7 +46,8 @@ func TestForkCase1(t *testing.T) {
 
 // case2:            |----c1(height=6)
 // ---------(height 5)
-//                   |----c2(height=6)
+//
+//	|----c2(height=6)
 func TestForkCase2(t *testing.T) {
 	c1, err := declChain("chain1", nil, 0, 6)
 	defer os.RemoveAll("chain1")

@@ -118,7 +118,8 @@ type ConcreteType struct {
 // be used to decode an underlying concrete type. The interface MUST be embedded
 // in a struct, and the interface MUST be the only field and it MUST be exported.
 // For example:
-//      RegisterInterface(struct{ Animal }{}, ConcreteType{&foo, 0x01})
+//
+//	RegisterInterface(struct{ Animal }{}, ConcreteType{&foo, 0x01})
 func RegisterInterface(o interface{}, ctypes ...ConcreteType) *TypeInfo {
 	it := GetTypeFromStructDeclaration(o)
 	if it.Kind() != reflect.Interface {
@@ -139,7 +140,7 @@ func RegisterInterface(o interface{}, ctypes ...ConcreteType) *TypeInfo {
 		toByte[crt] = typeByte
 	}
 	typeInfo := &TypeInfo{
-		Type: it,
+		Type:                  it,
 		IsRegisteredInterface: true,
 		ByteToType:            toType,
 		TypeToByte:            toByte,

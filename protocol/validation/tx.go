@@ -42,7 +42,7 @@ var (
 
 // GasState record the gas usage status
 type GasState struct {
-	KUSKValue   uint64
+	KUSKValue  uint64
 	GasLeft    int64
 	GasUsed    int64
 	StorageGas int64

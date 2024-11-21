@@ -1,12 +1,12 @@
 package database
 
 import (
+	"github.com/golang/protobuf/proto"
 	dbm "kuskcore/database/leveldb"
 	"kuskcore/database/storage"
 	"kuskcore/errors"
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/state"
-	"github.com/golang/protobuf/proto"
 )
 
 func CalcUtxoKey(hash *bc.Hash) []byte {

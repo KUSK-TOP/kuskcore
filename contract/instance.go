@@ -1,9 +1,9 @@
 package contract
 
 import (
+	"github.com/google/uuid"
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/bc/types"
-	"github.com/google/uuid"
 )
 
 type Status uint8

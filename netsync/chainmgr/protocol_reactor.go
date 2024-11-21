@@ -12,7 +12,7 @@ import (
 	"kuskcore/p2p/connection"
 )
 
-//ProtocolReactor handles new coming protocol message.
+// ProtocolReactor handles new coming protocol message.
 type ProtocolReactor struct {
 	p2p.BaseReactor
 
@@ -66,7 +66,7 @@ func (pr *ProtocolReactor) RemovePeer(peer *p2p.Peer, reason interface{}) {
 	pr.manager.RemovePeer(peer.Key)
 }
 
-//decodeMessage decode msg
+// decodeMessage decode msg
 func decodeMessage(bz []byte) (msgType byte, msg msgs.BlockchainMessage, err error) {
 	msgType = bz[0]
 	n := int(0)

@@ -22,8 +22,10 @@ type Mapper struct {
 // NewMapper creates a Mapper.
 //
 // If you have:
-//   type Foo interface {....}
-//   type FooS struct { Foo }
+//
+//	type Foo interface {....}
+//	type FooS struct { Foo }
+//
 // then you should pass in FooS{} in NewMapper, and implementations of Foo
 // in RegisterImplementation
 func NewMapper(base interface{}) Mapper {
@@ -49,7 +51,9 @@ func (m Mapper) RegisterImplementation(data interface{}, kind string, b byte) Ma
 // interfaces
 //
 // It tries to serialize as json, and the result looks like:
-//   { "type": "string", "data": "string" }
+//
+//	{ "type": "string", "data": "string" }
+//
 // Then it will return "<type>:<data>"
 //
 // Main usecase is serializing eg. crypto.PubKeyS as "ed25119:a1b2c3d4..."

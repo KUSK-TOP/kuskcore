@@ -132,7 +132,7 @@ func (na *NetAddress) String() string {
 	return na.str
 }
 
-//DialString dial address string representation
+// DialString dial address string representation
 func (na *NetAddress) DialString() string {
 	return net.JoinHostPort(
 		na.IP.String(),

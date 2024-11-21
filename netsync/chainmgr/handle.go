@@ -54,7 +54,7 @@ type Mempool interface {
 	IsDust(tx *types.Tx) bool
 }
 
-//Manager is responsible for the business layer information synchronization
+// Manager is responsible for the business layer information synchronization
 type Manager struct {
 	sw          Switch
 	chain       Chain
@@ -70,7 +70,7 @@ type Manager struct {
 	txMsgSub        *event.Subscription
 }
 
-//NewManager create a chain sync manager.
+// NewManager create a chain sync manager.
 func NewManager(config *cfg.Config, sw Switch, chain Chain, mempool Mempool, dispatcher *event.Dispatcher, peers *peers.PeerSet, fastSyncDB dbm.DB) (*Manager, error) {
 	manager := &Manager{
 		sw:              sw,
@@ -96,7 +96,7 @@ func (m *Manager) AddPeer(peer peers.BasePeer) {
 	m.peers.AddPeer(peer)
 }
 
-//IsCaughtUp check wheather the peer finish the sync
+// IsCaughtUp check wheather the peer finish the sync
 func (m *Manager) IsCaughtUp() bool {
 	peer := m.peers.BestPeer(consensus.SFFullNode)
 	return peer == nil || peer.Height() <= m.chain.BestBlockHeight()
@@ -397,7 +397,7 @@ func (m *Manager) Start() error {
 	return nil
 }
 
-//Stop stop sync manager
+// Stop stop sync manager
 func (m *Manager) Stop() {
 	m.blockKeeper.stop()
 	close(m.quit)

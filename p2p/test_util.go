@@ -13,7 +13,7 @@ import (
 	"kuskcore/p2p/discover/dht"
 )
 
-//PanicOnAddPeerErr add peer error
+// PanicOnAddPeerErr add peer error
 var PanicOnAddPeerErr = false
 
 func CreateRandomPeer(outbound bool) *Peer {

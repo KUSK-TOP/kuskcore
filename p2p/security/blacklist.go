@@ -33,7 +33,7 @@ func NewBlacklist(config *cfg.Config) *Blacklist {
 	}
 }
 
-//AddPeer add peer to blacklist
+// AddPeer add peer to blacklist
 func (bl *Blacklist) AddPeer(ip string) error {
 	bl.mtx.Lock()
 	defer bl.mtx.Unlock()

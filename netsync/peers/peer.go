@@ -33,7 +33,7 @@ var (
 	ErrNoValidPeer   = errors.New("Can't find valid fast sync peer")
 )
 
-//BasePeer is the interface for connection level peer
+// BasePeer is the interface for connection level peer
 type BasePeer interface {
 	Moniker() string
 	Addr() net.Addr
@@ -45,7 +45,7 @@ type BasePeer interface {
 	IsLAN() bool
 }
 
-//BasePeerSet is the intergace for connection level peer manager
+// BasePeerSet is the intergace for connection level peer manager
 type BasePeerSet interface {
 	StopPeerGracefully(string)
 	IsBanned(ip string, level byte, reason string) bool
@@ -425,7 +425,7 @@ func (ps *PeerSet) BestPeer(flag consensus.ServiceFlag) *Peer {
 	return bestPeer
 }
 
-//SendMsg send message to the target peer.
+// SendMsg send message to the target peer.
 func (ps *PeerSet) SendMsg(peerID string, msgChannel byte, msg interface{}) bool {
 	peer := ps.GetPeer(peerID)
 	if peer == nil {
@@ -439,7 +439,7 @@ func (ps *PeerSet) SendMsg(peerID string, msgChannel byte, msg interface{}) bool
 	return ok
 }
 
-//BroadcastMsg Broadcast message to the target peers
+// BroadcastMsg Broadcast message to the target peers
 // and mark the message send record
 func (ps *PeerSet) BroadcastMsg(bm BroadcastMsg) error {
 	//filter target peers

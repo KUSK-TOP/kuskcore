@@ -30,7 +30,7 @@ const (
 	maxNumLANPeers      = 15
 )
 
-//pre-define errors for connecting fail
+// pre-define errors for connecting fail
 var (
 	ErrDuplicatePeer  = errors.New("Duplicate peer")
 	ErrConnectSelf    = errors.New("Connect self")
@@ -68,7 +68,7 @@ type Switch struct {
 	reactorsByCh map[byte]Reactor
 	peers        *PeerSet
 	dialing      *cmn.CMap
-	nodeInfo     *NodeInfo             // our node info
+	nodeInfo     *NodeInfo    // our node info
 	nodePrivKey  chainkd.XPrv // our node privkey
 	discv        discv
 	lanDiscv     lanDiscv
@@ -226,7 +226,7 @@ func (sw *Switch) AddListener(l Listener) {
 	sw.listeners = append(sw.listeners, l)
 }
 
-//DialPeerWithAddress dial node from net address
+// DialPeerWithAddress dial node from net address
 func (sw *Switch) DialPeerWithAddress(addr *NetAddress) error {
 	log.WithFields(log.Fields{"module": logModule, "address": addr}).Debug("Dialing peer")
 	sw.dialing.Set(addr.IP.String(), addr)
@@ -254,7 +254,7 @@ func (sw *Switch) IsBanned(ip string, level byte, reason string) bool {
 	return sw.security.IsBanned(ip, level, reason)
 }
 
-//IsDialing prevent duplicate dialing
+// IsDialing prevent duplicate dialing
 func (sw *Switch) IsDialing(addr *NetAddress) bool {
 	return sw.dialing.Has(addr.IP.String())
 }
@@ -294,7 +294,7 @@ func (sw *Switch) NodeInfo() *NodeInfo {
 	return sw.nodeInfo
 }
 
-//Peers return switch peerset
+// Peers return switch peerset
 func (sw *Switch) Peers() *PeerSet {
 	return sw.peers
 }

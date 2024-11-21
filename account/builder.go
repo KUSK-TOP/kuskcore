@@ -16,7 +16,7 @@ import (
 	"kuskcore/protocol/vm/vmutil"
 )
 
-//DecodeSpendAction unmarshal JSON-encoded data of spend action
+// DecodeSpendAction unmarshal JSON-encoded data of spend action
 func (m *Manager) DecodeSpendAction(data []byte) (txbuilder.Action, error) {
 	a := &spendAction{accounts: m}
 	return a, stdjson.Unmarshal(data, a)
@@ -56,7 +56,7 @@ func MergeSpendAction(actions []txbuilder.Action) []txbuilder.Action {
 	return resultActions
 }
 
-//calcMergeGas calculate the gas required that n utxos are merged into one
+// calcMergeGas calculate the gas required that n utxos are merged into one
 func calcMergeGas(num int) uint64 {
 	gas := uint64(0)
 	for num > 1 {
@@ -242,7 +242,7 @@ func (a *spendAction) Build(ctx context.Context, b *txbuilder.TemplateBuilder) e
 	return nil
 }
 
-//DecodeSpendUTXOAction unmarshal JSON-encoded data of spend utxo action
+// DecodeSpendUTXOAction unmarshal JSON-encoded data of spend utxo action
 func (m *Manager) DecodeSpendUTXOAction(data []byte) (txbuilder.Action, error) {
 	a := &spendUTXOAction{accounts: m}
 	return a, stdjson.Unmarshal(data, a)
@@ -345,7 +345,7 @@ func UtxoToInputs(signer *signers.Signer, u *UTXO) (*types.TxInput, *txbuilder.S
 	return txInput, sigInst, nil
 }
 
-//DecodeVetoAction unmarshal JSON-encoded data of spend action
+// DecodeVetoAction unmarshal JSON-encoded data of spend action
 func (m *Manager) DecodeVetoAction(data []byte) (txbuilder.Action, error) {
 	a := &vetoAction{accounts: m}
 	return a, stdjson.Unmarshal(data, a)

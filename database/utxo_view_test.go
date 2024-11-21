@@ -4,11 +4,11 @@ import (
 	"os"
 	"testing"
 
+	dbm "kuskcore/database/leveldb"
 	"kuskcore/database/storage"
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/state"
 	"kuskcore/testutil"
-	dbm "kuskcore/database/leveldb"
 )
 
 func TestSaveUtxoView(t *testing.T) {

@@ -1,3 +1,4 @@
+//go:build !network
 // +build !network
 
 package p2p

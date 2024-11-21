@@ -61,18 +61,18 @@ func (b Bytes) String() string {
 // If you want to use this encoding for byte arrays, you can just
 // implement a simple custom marshaller for your byte array
 //
-//   type Dings [64]byte
+//	type Dings [64]byte
 //
-//   func (d Dings) MarshalJSON() ([]byte, error) {
-//     return data.Encoder.Marshal(d[:])
-//   }
+//	func (d Dings) MarshalJSON() ([]byte, error) {
+//	  return data.Encoder.Marshal(d[:])
+//	}
 //
-//   func (d *Dings) UnmarshalJSON(enc []byte) error {
-//     var ref []byte
-//     err := data.Encoder.Unmarshal(&ref, enc)
-//     copy(d[:], ref)
-//     return err
-//   }
+//	func (d *Dings) UnmarshalJSON(enc []byte) error {
+//	  var ref []byte
+//	  err := data.Encoder.Unmarshal(&ref, enc)
+//	  copy(d[:], ref)
+//	  return err
+//	}
 type ByteEncoder interface {
 	Marshal(bytes []byte) ([]byte, error)
 	Unmarshal(dst *[]byte, src []byte) error

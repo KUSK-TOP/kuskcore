@@ -98,7 +98,7 @@ func (a *API) getBlock(ins BlockReq) Response {
 
 		resOutID := orig.ResultIds[0]
 		resOut := orig.Entries[*resOutID]
-		switch out :=resOut.(type) {
+		switch out := resOut.(type) {
 		case *bc.OriginalOutput:
 			tx.MuxID = *out.Source.Ref
 		case *bc.VoteOutput:

@@ -89,7 +89,7 @@ type Account struct {
 	Alias string `json:"alias"`
 }
 
-//CtrlProgram is structure of account control program
+// CtrlProgram is structure of account control program
 type CtrlProgram struct {
 	AccountID      string
 	Address        string

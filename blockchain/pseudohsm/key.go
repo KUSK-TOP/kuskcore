@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"kuskcore/crypto/ed25519/chainkd"
 	"github.com/pborman/uuid"
+	"kuskcore/crypto/ed25519/chainkd"
 )
 
 const (

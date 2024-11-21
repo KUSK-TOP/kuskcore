@@ -11,7 +11,7 @@ import (
 	"kuskcore/protocol/bc/types"
 )
 
-//protocol msg byte
+// protocol msg byte
 const (
 	BlockchainChannel = byte(0x40)
 
@@ -35,7 +35,7 @@ const (
 	TxsMsgMaxTxNum            = 1024
 )
 
-//BlockchainMessage is a generic message for this reactor.
+// BlockchainMessage is a generic message for this reactor.
 type BlockchainMessage interface {
 	String() string
 }
@@ -59,13 +59,13 @@ var _ = wire.RegisterInterface(
 	wire.ConcreteType{&MerkleBlockMessage{}, MerkleResponseByte},
 )
 
-//GetBlockMessage request blocks from remote peers by height/hash
+// GetBlockMessage request blocks from remote peers by height/hash
 type GetBlockMessage struct {
 	Height  uint64
 	RawHash [32]byte
 }
 
-//GetHash reutrn the hash of the request
+// GetHash reutrn the hash of the request
 func (m *GetBlockMessage) GetHash() *bc.Hash {
 	hash := bc.NewHash(m.RawHash)
 	return &hash
@@ -78,12 +78,12 @@ func (m *GetBlockMessage) String() string {
 	return fmt.Sprintf("{hash: %s}", hex.EncodeToString(m.RawHash[:]))
 }
 
-//BlockMessage response get block msg
+// BlockMessage response get block msg
 type BlockMessage struct {
 	RawBlock []byte
 }
 
-//NewBlockMessage construct bock response msg
+// NewBlockMessage construct bock response msg
 func NewBlockMessage(block *types.Block) (*BlockMessage, error) {
 	rawBlock, err := block.MarshalText()
 	if err != nil {
@@ -92,7 +92,7 @@ func NewBlockMessage(block *types.Block) (*BlockMessage, error) {
 	return &BlockMessage{RawBlock: rawBlock}, nil
 }
 
-//GetBlock get block from msg
+// GetBlock get block from msg
 func (m *BlockMessage) GetBlock() (*types.Block, error) {
 	block := &types.Block{
 		BlockHeader:  types.BlockHeader{},
@@ -113,14 +113,14 @@ func (m *BlockMessage) String() string {
 	return fmt.Sprintf("{block_height: %d, block_hash: %s}", block.Height, blockHash.String())
 }
 
-//GetHeadersMessage is one of the kusk msg type
+// GetHeadersMessage is one of the kusk msg type
 type GetHeadersMessage struct {
 	RawBlockLocator [][32]byte
 	RawStopHash     [32]byte
 	Skip            uint64
 }
 
-//NewGetHeadersMessage return a new GetHeadersMessage
+// NewGetHeadersMessage return a new GetHeadersMessage
 func NewGetHeadersMessage(blockLocator []*bc.Hash, stopHash *bc.Hash, skip uint64) *GetHeadersMessage {
 	msg := &GetHeadersMessage{
 		RawStopHash: stopHash.Byte32(),
@@ -132,7 +132,7 @@ func NewGetHeadersMessage(blockLocator []*bc.Hash, stopHash *bc.Hash, skip uint6
 	return msg
 }
 
-//GetBlockLocator return the locator of the msg
+// GetBlockLocator return the locator of the msg
 func (m *GetHeadersMessage) GetBlockLocator() []*bc.Hash {
 	blockLocator := []*bc.Hash{}
 	for _, rawHash := range m.RawBlockLocator {
@@ -147,7 +147,7 @@ func (m *GetHeadersMessage) String() string {
 	return fmt.Sprintf("{skip:%d,stopHash:%s}", m.Skip, stopHash.String())
 }
 
-//GetStopHash return the stop hash of the msg
+// GetStopHash return the stop hash of the msg
 func (m *GetHeadersMessage) GetStopHash() *bc.Hash {
 	hash := bc.NewHash(m.RawStopHash)
 	return &hash
@@ -157,12 +157,12 @@ func (m *GetHeadersMessage) GetSkip() uint64 {
 	return m.Skip
 }
 
-//HeadersMessage is one of the kusk msg type
+// HeadersMessage is one of the kusk msg type
 type HeadersMessage struct {
 	RawHeaders [][]byte
 }
 
-//NewHeadersMessage create a new HeadersMessage
+// NewHeadersMessage create a new HeadersMessage
 func NewHeadersMessage(headers []*types.BlockHeader) (*HeadersMessage, error) {
 	RawHeaders := [][]byte{}
 	for _, header := range headers {
@@ -176,7 +176,7 @@ func NewHeadersMessage(headers []*types.BlockHeader) (*HeadersMessage, error) {
 	return &HeadersMessage{RawHeaders: RawHeaders}, nil
 }
 
-//GetHeaders return the headers in the msg
+// GetHeaders return the headers in the msg
 func (m *HeadersMessage) GetHeaders() ([]*types.BlockHeader, error) {
 	headers := []*types.BlockHeader{}
 	for _, data := range m.RawHeaders {
@@ -194,13 +194,13 @@ func (m *HeadersMessage) String() string {
 	return fmt.Sprintf("{header_length: %d}", len(m.RawHeaders))
 }
 
-//GetBlocksMessage is one of the kusk msg type
+// GetBlocksMessage is one of the kusk msg type
 type GetBlocksMessage struct {
 	RawBlockLocator [][32]byte
 	RawStopHash     [32]byte
 }
 
-//NewGetBlocksMessage create a new GetBlocksMessage
+// NewGetBlocksMessage create a new GetBlocksMessage
 func NewGetBlocksMessage(blockLocator []*bc.Hash, stopHash *bc.Hash) *GetBlocksMessage {
 	msg := &GetBlocksMessage{
 		RawStopHash: stopHash.Byte32(),
@@ -211,7 +211,7 @@ func NewGetBlocksMessage(blockLocator []*bc.Hash, stopHash *bc.Hash) *GetBlocksM
 	return msg
 }
 
-//GetBlockLocator return the locator of the msg
+// GetBlockLocator return the locator of the msg
 func (m *GetBlocksMessage) GetBlockLocator() []*bc.Hash {
 	blockLocator := []*bc.Hash{}
 	for _, rawHash := range m.RawBlockLocator {
@@ -221,7 +221,7 @@ func (m *GetBlocksMessage) GetBlockLocator() []*bc.Hash {
 	return blockLocator
 }
 
-//GetStopHash return the stop hash of the msg
+// GetStopHash return the stop hash of the msg
 func (m *GetBlocksMessage) GetStopHash() *bc.Hash {
 	hash := bc.NewHash(m.RawStopHash)
 	return &hash
@@ -231,12 +231,12 @@ func (m *GetBlocksMessage) String() string {
 	return fmt.Sprintf("{stop_hash: %s}", hex.EncodeToString(m.RawStopHash[:]))
 }
 
-//BlocksMessage is one of the kusk msg type
+// BlocksMessage is one of the kusk msg type
 type BlocksMessage struct {
 	RawBlocks [][]byte
 }
 
-//NewBlocksMessage create a new BlocksMessage
+// NewBlocksMessage create a new BlocksMessage
 func NewBlocksMessage(blocks []*types.Block) (*BlocksMessage, error) {
 	rawBlocks := [][]byte{}
 	for _, block := range blocks {
@@ -250,7 +250,7 @@ func NewBlocksMessage(blocks []*types.Block) (*BlocksMessage, error) {
 	return &BlocksMessage{RawBlocks: rawBlocks}, nil
 }
 
-//GetBlocks returns the blocks in the msg
+// GetBlocks returns the blocks in the msg
 func (m *BlocksMessage) GetBlocks() ([]*types.Block, error) {
 	blocks := []*types.Block{}
 	for _, data := range m.RawBlocks {
@@ -268,7 +268,7 @@ func (m *BlocksMessage) String() string {
 	return fmt.Sprintf("{blocks_length: %d}", len(m.RawBlocks))
 }
 
-//StatusResponseMessage get status response msg
+// StatusResponseMessage get status response msg
 type StatusMessage struct {
 	BestHeight      uint64
 	BestHash        [32]byte
@@ -276,7 +276,7 @@ type StatusMessage struct {
 	JustifiedHash   [32]byte
 }
 
-//NewStatusResponseMessage construct get status response msg
+// NewStatusResponseMessage construct get status response msg
 func NewStatusMessage(bestHeader, justifiedHeader *types.BlockHeader) *StatusMessage {
 	return &StatusMessage{
 		BestHeight:      bestHeader.Height,
@@ -286,7 +286,7 @@ func NewStatusMessage(bestHeader, justifiedHeader *types.BlockHeader) *StatusMes
 	}
 }
 
-//GetHash get hash from msg
+// GetHash get hash from msg
 func (m *StatusMessage) GetBestHash() *bc.Hash {
 	hash := bc.NewHash(m.BestHash)
 	return &hash
@@ -301,12 +301,12 @@ func (m *StatusMessage) String() string {
 	return fmt.Sprintf("{best hash: %s, irreversible hash: %s}", hex.EncodeToString(m.BestHash[:]), hex.EncodeToString(m.JustifiedHash[:]))
 }
 
-//TransactionMessage notify new tx msg
+// TransactionMessage notify new tx msg
 type TransactionMessage struct {
 	RawTx []byte
 }
 
-//NewTransactionMessage construct notify new tx msg
+// NewTransactionMessage construct notify new tx msg
 func NewTransactionMessage(tx *types.Tx) (*TransactionMessage, error) {
 	rawTx, err := tx.TxData.MarshalText()
 	if err != nil {
@@ -315,7 +315,7 @@ func NewTransactionMessage(tx *types.Tx) (*TransactionMessage, error) {
 	return &TransactionMessage{RawTx: rawTx}, nil
 }
 
-//GetTransaction get tx from msg
+// GetTransaction get tx from msg
 func (m *TransactionMessage) GetTransaction() (*types.Tx, error) {
 	tx := &types.Tx{}
 	if err := tx.UnmarshalText(m.RawTx); err != nil {
@@ -332,12 +332,12 @@ func (m *TransactionMessage) String() string {
 	return fmt.Sprintf("{tx_size: %d, tx_hash: %s}", len(m.RawTx), tx.ID.String())
 }
 
-//TransactionsMessage notify new txs msg
+// TransactionsMessage notify new txs msg
 type TransactionsMessage struct {
 	RawTxs [][]byte
 }
 
-//NewTransactionsMessage construct notify new txs msg
+// NewTransactionsMessage construct notify new txs msg
 func NewTransactionsMessage(txs []*types.Tx) (*TransactionsMessage, error) {
 	rawTxs := make([][]byte, 0, len(txs))
 	for _, tx := range txs {
@@ -351,7 +351,7 @@ func NewTransactionsMessage(txs []*types.Tx) (*TransactionsMessage, error) {
 	return &TransactionsMessage{RawTxs: rawTxs}, nil
 }
 
-//GetTransactions get txs from msg
+// GetTransactions get txs from msg
 func (m *TransactionsMessage) GetTransactions() ([]*types.Tx, error) {
 	txs := make([]*types.Tx, 0, len(m.RawTxs))
 	for _, rawTx := range m.RawTxs {
@@ -369,12 +369,12 @@ func (m *TransactionsMessage) String() string {
 	return fmt.Sprintf("{tx_num: %d}", len(m.RawTxs))
 }
 
-//MineBlockMessage new mined block msg
+// MineBlockMessage new mined block msg
 type MineBlockMessage struct {
 	RawBlock []byte
 }
 
-//NewMinedBlockMessage construct new mined block msg
+// NewMinedBlockMessage construct new mined block msg
 func NewMinedBlockMessage(block *types.Block) (*MineBlockMessage, error) {
 	rawBlock, err := block.MarshalText()
 	if err != nil {
@@ -383,7 +383,7 @@ func NewMinedBlockMessage(block *types.Block) (*MineBlockMessage, error) {
 	return &MineBlockMessage{RawBlock: rawBlock}, nil
 }
 
-//GetMineBlock get mine block from msg
+// GetMineBlock get mine block from msg
 func (m *MineBlockMessage) GetMineBlock() (*types.Block, error) {
 	block := &types.Block{}
 	if err := block.UnmarshalText(m.RawBlock); err != nil {
@@ -401,7 +401,7 @@ func (m *MineBlockMessage) String() string {
 	return fmt.Sprintf("{block_height: %d, block_hash: %s}", block.Height, blockHash.String())
 }
 
-//FilterLoadMessage tells the receiving peer to filter the transactions according to address.
+// FilterLoadMessage tells the receiving peer to filter the transactions according to address.
 type FilterLoadMessage struct {
 	Addresses [][]byte
 }
@@ -419,20 +419,20 @@ func (m *FilterAddMessage) String() string {
 	return fmt.Sprintf("{address: %s}", hex.EncodeToString(m.Address))
 }
 
-//FilterClearMessage tells the receiving peer to remove a previously-set filter.
+// FilterClearMessage tells the receiving peer to remove a previously-set filter.
 type FilterClearMessage struct{}
 
 func (m *FilterClearMessage) String() string {
 	return "{}"
 }
 
-//GetMerkleBlockMessage request merkle blocks from remote peers by height/hash
+// GetMerkleBlockMessage request merkle blocks from remote peers by height/hash
 type GetMerkleBlockMessage struct {
 	Height  uint64
 	RawHash [32]byte
 }
 
-//GetHash reutrn the hash of the request
+// GetHash reutrn the hash of the request
 func (m *GetMerkleBlockMessage) GetHash() *bc.Hash {
 	hash := bc.NewHash(m.RawHash)
 	return &hash
@@ -445,7 +445,7 @@ func (m *GetMerkleBlockMessage) String() string {
 	return fmt.Sprintf("{hash: %s}", hex.EncodeToString(m.RawHash[:]))
 }
 
-//MerkleBlockMessage return the merkle block to client
+// MerkleBlockMessage return the merkle block to client
 type MerkleBlockMessage struct {
 	RawBlockHeader []byte
 	TxHashes       [][32]byte
@@ -483,7 +483,7 @@ func (m *MerkleBlockMessage) String() string {
 	return "{}"
 }
 
-//NewMerkleBlockMessage construct merkle block message
+// NewMerkleBlockMessage construct merkle block message
 func NewMerkleBlockMessage() *MerkleBlockMessage {
 	return &MerkleBlockMessage{}
 }

@@ -21,7 +21,7 @@ const (
 	tryListenTimes         = 5
 )
 
-//Listener subset of the methods of DefaultListener
+// Listener subset of the methods of DefaultListener
 type Listener interface {
 	Connections() <-chan net.Conn
 	InternalAddress() *NetAddress
@@ -55,7 +55,7 @@ func GetListener(config *cfg.P2PConfig) (Listener, string) {
 	return l, cmn.Fmt("%v:%v", l.InternalAddress().IP.String(), l.InternalAddress().Port)
 }
 
-//getUPNPExternalAddress UPNP external address discovery & port mapping
+// getUPNPExternalAddress UPNP external address discovery & port mapping
 func getUPNPExternalAddress(externalPort, internalPort int) (*NetAddress, error) {
 	nat, err := upnp.Discover()
 	if err != nil {
@@ -93,7 +93,7 @@ func splitHostPort(addr string) (host string, port int) {
 	return host, port
 }
 
-//DefaultListener Implements kuskd server Listener
+// DefaultListener Implements kuskd server Listener
 type DefaultListener struct {
 	cmn.BaseService
 
@@ -103,7 +103,7 @@ type DefaultListener struct {
 	connections chan net.Conn
 }
 
-//NewDefaultListener create a default listener
+// NewDefaultListener create a default listener
 func NewDefaultListener(protocol string, lAddr string, skipUPNP bool) (Listener, bool) {
 	// Local listen IP & port
 	lAddrIP, lAddrPort := splitHostPort(lAddr)
@@ -166,20 +166,20 @@ func NewDefaultListener(protocol string, lAddr string, skipUPNP bool) (Listener,
 	return dl, true
 }
 
-//OnStart start listener
+// OnStart start listener
 func (l *DefaultListener) OnStart() error {
 	l.BaseService.OnStart()
 	go l.listenRoutine()
 	return nil
 }
 
-//OnStop stop listener
+// OnStop stop listener
 func (l *DefaultListener) OnStop() {
 	l.BaseService.OnStop()
 	l.listener.Close()
 }
 
-//listenRoutine Accept connections and pass on the channel
+// listenRoutine Accept connections and pass on the channel
 func (l *DefaultListener) listenRoutine() {
 	for {
 		conn, err := l.listener.Accept()
@@ -197,17 +197,17 @@ func (l *DefaultListener) listenRoutine() {
 	close(l.connections)
 }
 
-//Connections a channel of inbound connections. It gets closed when the listener closes.
+// Connections a channel of inbound connections. It gets closed when the listener closes.
 func (l *DefaultListener) Connections() <-chan net.Conn {
 	return l.connections
 }
 
-//InternalAddress listener internal address
+// InternalAddress listener internal address
 func (l *DefaultListener) InternalAddress() *NetAddress {
 	return l.intAddr
 }
 
-//ExternalAddress listener external address for remote peer dial
+// ExternalAddress listener external address for remote peer dial
 func (l *DefaultListener) ExternalAddress() *NetAddress {
 	return l.extAddr
 }
@@ -217,7 +217,7 @@ func (l *DefaultListener) NetListener() net.Listener {
 	return l.listener
 }
 
-//String string of default listener
+// String string of default listener
 func (l *DefaultListener) String() string {
 	return fmt.Sprintf("Listener(@%v)", l.extAddr)
 }

@@ -87,12 +87,14 @@ func (m *jsonMapper) FromJSON(data []byte) (interface{}, error) {
 }
 
 // ToJson will serialize a registered implementation into a format like:
-//   {
-//     "type": "foo",
-//     "data": {
-//       "name": "dings"
-//     }
-//   }
+//
+//	{
+//	  "type": "foo",
+//	  "data": {
+//	    "name": "dings"
+//	  }
+//	}
+//
 // this allows us to properly deserialize with FromJSON
 func (m *jsonMapper) ToJSON(data interface{}) ([]byte, error) {
 	// handle null specially

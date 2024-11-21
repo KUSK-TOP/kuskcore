@@ -23,7 +23,7 @@ var (
 	ErrNoToken = errors.New("no token")
 )
 
-//API describe the token authenticate.
+// API describe the token authenticate.
 type API struct {
 	disable  bool
 	tokens   *accesstoken.CredentialStore
@@ -35,7 +35,7 @@ type tokenResult struct {
 	lastLookup time.Time
 }
 
-//NewAPI create a token authenticate object.
+// NewAPI create a token authenticate object.
 func NewAPI(tokens *accesstoken.CredentialStore, disable bool) *API {
 	return &API{
 		disable:  disable,

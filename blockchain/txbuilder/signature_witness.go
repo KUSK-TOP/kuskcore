@@ -47,9 +47,9 @@ var ErrEmptyProgram = errors.New("empty signature program")
 // If sw.Program is empty, it is populated with an _inferred_ predicate:
 // a program committing to aspects of the current
 // transaction. Specifically, the program commits to:
-//  - the mintime and maxtime of the transaction (if non-zero)
-//  - the outputID of the current input
-//  - the assetID, amount, control program of each output.
+//   - the mintime and maxtime of the transaction (if non-zero)
+//   - the outputID of the current input
+//   - the assetID, amount, control program of each output.
 func (sw *SignatureWitness) sign(ctx context.Context, tpl *Template, index uint32, auth string, signFn SignFunc) error {
 	// Compute the predicate to sign. This is either a
 	// txsighash program if tpl.AllowAdditional is false (i.e., the tx is complete

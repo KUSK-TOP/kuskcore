@@ -12,10 +12,10 @@ import (
 	"kuskcore/blockchain/signers"
 	"kuskcore/crypto/ed25519/chainkd"
 	"kuskcore/crypto/sha3pool"
+	dbm "kuskcore/database/leveldb"
 	"kuskcore/errors"
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/bc/types"
-	dbm "kuskcore/database/leveldb"
 )
 
 const (
@@ -28,7 +28,7 @@ const (
 	addrRecoveryWindow = uint64(128)
 )
 
-//recoveryKey key for db store recovery info.
+// recoveryKey key for db store recovery info.
 var (
 	recoveryKey = []byte("RecoveryInfo")
 
@@ -44,12 +44,12 @@ var (
 // derivation branch.
 //
 // A branch recovery state supports operations for:
-//  - Expanding the look-ahead horizon based on which indexes have been found.
-//  - Registering derived addresses with indexes within the horizon.
-//  - Reporting an invalid child index that falls into the horizon.
-//  - Reporting that an address has been found.
-//  - Retrieving all currently derived addresses for the branch.
-//  - Looking up a particular address by its child index.
+//   - Expanding the look-ahead horizon based on which indexes have been found.
+//   - Registering derived addresses with indexes within the horizon.
+//   - Reporting an invalid child index that falls into the horizon.
+//   - Reporting that an address has been found.
+//   - Retrieving all currently derived addresses for the branch.
+//   - Looking up a particular address by its child index.
 type branchRecoveryState struct {
 	// recoveryWindow defines the key-derivation lookahead used when
 	// attempting to recover the set of addresses on this branch.
@@ -458,12 +458,12 @@ func (m *recoveryManager) saveAccount(acct *account.Account) error {
 	return m.accountMgr.SaveAccount(acct)
 }
 
-//tryStartXPubsRec guarantee that only one xPubs recovery is in progress.
+// tryStartXPubsRec guarantee that only one xPubs recovery is in progress.
 func (m *recoveryManager) tryStartXPubsRec() bool {
 	return atomic.CompareAndSwapInt32(&m.locked, 0, 1)
 }
 
-//stopXPubsRec release xPubs recovery lock.
+// stopXPubsRec release xPubs recovery lock.
 func (m *recoveryManager) stopXPubsRec() {
 	m.state.XPubs = nil
 	atomic.StoreInt32(&m.locked, 0)

@@ -29,13 +29,13 @@ func TestGasStatus(t *testing.T) {
 	}{
 		{
 			input: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  10000 / consensus.VMGasRate,
-				GasUsed:  0,
+				GasLeft:   10000 / consensus.VMGasRate,
+				GasUsed:   0,
 				KUSKValue: 10000,
 			},
 			f: func(input *GasState) error {
@@ -45,13 +45,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			f: func(input *GasState) error {
@@ -61,13 +61,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  30000,
-				GasUsed:  0,
+				GasLeft:   30000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  300000,
-				GasUsed:  0,
+				GasLeft:   300000,
+				GasUsed:   0,
 				KUSKValue: 80000000000,
 			},
 			f: func(input *GasState) error {
@@ -77,13 +77,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  30000,
-				GasUsed:  0,
+				GasLeft:   30000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  300000,
-				GasUsed:  0,
+				GasLeft:   300000,
+				GasUsed:   0,
 				KUSKValue: math.MaxInt64,
 			},
 			f: func(input *GasState) error {
@@ -93,13 +93,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			f: func(input *GasState) error {
@@ -109,13 +109,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  10000,
-				GasUsed:  0,
+				GasLeft:   10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  9999,
-				GasUsed:  1,
+				GasLeft:   9999,
+				GasUsed:   1,
 				KUSKValue: 0,
 			},
 			f: func(input *GasState) error {
@@ -125,13 +125,13 @@ func TestGasStatus(t *testing.T) {
 		},
 		{
 			input: &GasState{
-				GasLeft:  -10000,
-				GasUsed:  0,
+				GasLeft:   -10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			output: &GasState{
-				GasLeft:  -10000,
-				GasUsed:  0,
+				GasLeft:   -10000,
+				GasUsed:   0,
 				KUSKValue: 0,
 			},
 			f: func(input *GasState) error {
@@ -1056,9 +1056,10 @@ type txFixture struct {
 // subsequent call to make iterative refinements to a test object.
 //
 // The default transaction produced is valid and has three inputs:
-//  - an issuance of 10 units
-//  - a spend of 20 units
-//  - a spend of 40 units
+//   - an issuance of 10 units
+//   - a spend of 20 units
+//   - a spend of 40 units
+//
 // and two outputs, one of 25 units and one of 45 units.
 // All amounts are denominated in the same asset.
 //

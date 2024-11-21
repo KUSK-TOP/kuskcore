@@ -101,7 +101,7 @@ func TestReadWriteSupLink(t *testing.T) {
 				},
 			},
 			hexString: strings.Join([]string{
-				"01", // len of sup links,
+				"01",   // len of sup links,
 				"c801", // source height
 				"0a3cd1175e295a35c2b63054969c3fe54eeaa3eb68258227b28d8daa6cf4c50c", // source hash
 				"40", // len of signature 1

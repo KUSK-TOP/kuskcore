@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"kuskcore/consensus"
 	"github.com/davecgh/go-spew/spew"
+	"kuskcore/consensus"
 )
 
 var testnetAddr = []string{"1.2.3.4", "5.6.7.8"}

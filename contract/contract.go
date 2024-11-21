@@ -30,14 +30,14 @@ type Registry struct {
 	contractMu sync.Mutex
 }
 
-//NewRegistry create new registry
+// NewRegistry create new registry
 func NewRegistry(db dbm.DB) *Registry {
 	return &Registry{
 		db: db,
 	}
 }
 
-//Contract describe user contract
+// Contract describe user contract
 type Contract struct {
 	Hash            chainjson.HexBytes `json:"id"`
 	Alias           string             `json:"alias"`
@@ -65,7 +65,7 @@ func (reg *Registry) SaveContract(contract *Contract) error {
 	return nil
 }
 
-//UpdateContract updates user contract alias
+// UpdateContract updates user contract alias
 func (reg *Registry) UpdateContract(hash chainjson.HexBytes, alias string) error {
 	reg.contractMu.Lock()
 	defer reg.contractMu.Unlock()

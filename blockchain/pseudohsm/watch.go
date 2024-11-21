@@ -1,3 +1,4 @@
+//go:build (darwin && !ios) || freebsd || (linux && !arm64) || netbsd || solaris || windows
 // +build darwin,!ios freebsd linux,!arm64 netbsd solaris windows
 
 package pseudohsm

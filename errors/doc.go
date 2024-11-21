@@ -33,7 +33,7 @@ Example:
 		log.Println("success")
 	}
 
-When to wrap errors
+# When to wrap errors
 
 Errors should be wrapped with additional messages when the context is ambiguous.
 This includes when the error could arise in multiple locations in the same
@@ -41,7 +41,7 @@ function, when the error is very common and likely to appear at different points
 in the call tree (e.g., JSON serialization errors), or when you need specific
 parameters alongside the original error message.
 
-Error handling best practices
+# Error handling best practices
 
 Errors are part of a function's interface. If you expect the caller to perform
 conditional error handling, you should document the errors returned by your

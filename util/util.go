@@ -3,10 +3,10 @@ package util
 import (
 	"context"
 
+	jww "github.com/spf13/jwalterweatherman"
 	"kuskcore/api"
 	"kuskcore/blockchain/rpc"
 	"kuskcore/env"
-	jww "github.com/spf13/jwalterweatherman"
 )
 
 const (

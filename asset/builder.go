@@ -14,7 +14,7 @@ import (
 	"kuskcore/protocol/bc/types"
 )
 
-//NewIssueAction create a new asset issue action
+// NewIssueAction create a new asset issue action
 func (reg *Registry) NewIssueAction(assetAmount bc.AssetAmount) txbuilder.Action {
 	return &issueAction{
 		assets:      reg,
@@ -22,7 +22,7 @@ func (reg *Registry) NewIssueAction(assetAmount bc.AssetAmount) txbuilder.Action
 	}
 }
 
-//DecodeIssueAction unmarshal JSON-encoded data of asset issue action
+// DecodeIssueAction unmarshal JSON-encoded data of asset issue action
 func (reg *Registry) DecodeIssueAction(data []byte) (txbuilder.Action, error) {
 	a := &issueAction{assets: reg}
 	err := json.Unmarshal(data, a)

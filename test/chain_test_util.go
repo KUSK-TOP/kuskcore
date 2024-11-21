@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/golang/protobuf/proto"
 	"kuskcore/blockchain/txbuilder"
 	"kuskcore/consensus"
 	"kuskcore/database"
@@ -14,7 +15,6 @@ import (
 	"kuskcore/protocol/bc"
 	"kuskcore/protocol/bc/types"
 	"kuskcore/protocol/vm"
-	"github.com/golang/protobuf/proto"
 )
 
 const utxoPrefix = "UT:"

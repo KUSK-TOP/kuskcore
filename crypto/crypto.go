@@ -1,9 +1,9 @@
 package crypto
 
 import (
-	"kuskcore/common"
 	"golang.org/x/crypto/ripemd160"
 	"golang.org/x/crypto/sha3"
+	"kuskcore/common"
 )
 
 func Sha256(data ...[]byte) []byte {

@@ -78,7 +78,7 @@ func GetBip0032Path(s *Signer, ks keySpace, itemIndexes ...uint64) [][]byte {
 func getBip0044Path(accountIndex uint64, change bool, addrIndex uint64) [][]byte {
 	var path [][]byte
 	path = append(path, BIP44Purpose[:]) //purpose
-	path = append(path, KUSKCoinType[:])  //coin type
+	path = append(path, KUSKCoinType[:]) //coin type
 	accIdxBytes := make([]byte, 4)
 	binary.LittleEndian.PutUint32(accIdxBytes, uint32(accountIndex))
 	path = append(path, accIdxBytes) //account index

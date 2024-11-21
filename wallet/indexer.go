@@ -435,4 +435,3 @@ func (w *Wallet) indexVotes(accountUTXOs []*account.UTXO) ([]AccountVotes, error
 
 	return votes, nil
 }
-

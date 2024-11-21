@@ -206,7 +206,7 @@ func (h *HSM) XSign(xpub chainkd.XPub, path [][]byte, msg []byte, auth string) (
 	return xprv.Sign(msg), nil
 }
 
-//LoadChainKDKey get xprv from xpub
+// LoadChainKDKey get xprv from xpub
 func (h *HSM) LoadChainKDKey(xpub chainkd.XPub, auth string) (xprv chainkd.XPrv, err error) {
 	h.cacheMu.Lock()
 	defer h.cacheMu.Unlock()

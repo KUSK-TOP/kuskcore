@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"kuskcore/crypto/ed25519/chainkd"
 	"github.com/cespare/cp"
 	"github.com/davecgh/go-spew/spew"
+	"kuskcore/crypto/ed25519/chainkd"
 )
 
 var (

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"kuskcore/protocol/bc"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/sync/semaphore"
+	"kuskcore/protocol/bc"
 )
 
 var errInstQueueOverflow = errors.New("instance queue is overflow")
@@ -58,7 +58,7 @@ func (t *traceScheduler) processLoop() {
 		}
 		t.tracer = newTracer(jobs[beginHash])
 
-		for t.currentHeight, t.currentHash = beginHeight, beginHash;; {
+		for t.currentHeight, t.currentHash = beginHeight, beginHash; ; {
 			if t.currentHeight == t.tracerService.BestHeight() {
 				if err := t.finishJobs(jobs); err != nil {
 					log.WithFields(log.Fields{"module": logModule, "err": err}).Error("finish jobs")
@@ -98,7 +98,7 @@ func (t *traceScheduler) tryAttach(jobs map[bc.Hash][]*Instance) (bool, error) {
 		return true, nil
 	}
 
-	block, err := t.infra.Chain.GetBlockByHeight(t.currentHeight+1)
+	block, err := t.infra.Chain.GetBlockByHeight(t.currentHeight + 1)
 	if err != nil {
 		return false, err
 	}
