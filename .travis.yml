@@ -1,5 +1,5 @@
 language: go
-go_import_path: github.com/kusk/kusk
+go_import_path: github.com/KUSK-TOP/kuskcore
 dist: trusty
 sudo: false
 
