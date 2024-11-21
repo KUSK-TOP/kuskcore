@@ -22,7 +22,7 @@ const (
 
 	// These configs need add to casper config in elegant way
 	MaxNumOfValidators = int(1000)
-	InitKUSKSupply     = 12000000000000000
+	InitKUSKSupply     = 60000000000000000
 	RewardThreshold    = 0.5
 	BlockReward        = uint64(600000000)
 
