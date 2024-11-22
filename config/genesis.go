@@ -27,7 +27,7 @@ func mainNetGenesisBlock() *types.Block {
 		BlockHeader: types.BlockHeader{
 			Version:   1,
 			Height:    0,
-			Timestamp: 1732075218000,
+			Timestamp: 1732291200000,
 			BlockCommitment: types.BlockCommitment{
 				TransactionsMerkleRoot: merkleRoot,
 			},
@@ -48,7 +48,7 @@ func testNetGenesisBlock() *types.Block {
 		BlockHeader: types.BlockHeader{
 			Version:   1,
 			Height:    0,
-			Timestamp: 1732075218000,
+			Timestamp: 1732291200000,
 			BlockCommitment: types.BlockCommitment{
 				TransactionsMerkleRoot: merkleRoot,
 			},
@@ -69,7 +69,7 @@ func soloNetGenesisBlock() *types.Block {
 		BlockHeader: types.BlockHeader{
 			Version:   1,
 			Height:    0,
-			Timestamp: 1732075218000,
+			Timestamp: 1732291200000,
 			BlockCommitment: types.BlockCommitment{
 				TransactionsMerkleRoot: merkleRoot,
 			},
