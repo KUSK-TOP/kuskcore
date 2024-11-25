@@ -11,7 +11,7 @@ Kusk Core
 
 ## What is Kusk?
 
-Kusk is a network of nodes designed to operate and connect to a highly scalable blockchain network and confirms the Kusk blockchain protocol, which allows participants to share and transfer digital assets. For more details, see the [White Paper](https://kusk.top/KUSK-WhitePaper.html) for more details.
+KUSK is a cryptocurrency created for low energy consumption, fast transactions, and decentralisation. For more details, see the [White Paper](https://kusk.top/KUSK-WhitePaper.html) for more details.
 
 In the current state `kusk` is able to:
 
