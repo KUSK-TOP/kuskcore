@@ -1,4 +1,4 @@
-Kusk
+Kusk Core
 ======
 
 [![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
