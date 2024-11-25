@@ -24,8 +24,13 @@ In the current state `kusk` is able to:
 Ensure Go with the supported version is installed properly:
 
 ```bash
+$ wget -c https://go.dev/dl/go1.22.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
+
+$ export PATH=$PATH:/usr/local/go/bin
+
+$ source ~/.profile
+
 $ go version
-$ go env GOROOT GOPATH
 ```
 
 - Get the source code
