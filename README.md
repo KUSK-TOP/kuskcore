@@ -1,6 +1,13 @@
 Kusk
 ======
 
+[![Build](https://github.com/KUSK-TOP/kuskcore/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/KUSK-TOP/kuskcore/actions)
+[![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
+[![Supports Linux](https://img.shields.io/badge/support-Linux-yellow?logo=Linux)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
+[![License](https://img.shields.io/github/license/KUSK-TOP/kuskcore)](https://github.com/KUSK-TOP/kuskcore/blob/master/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/KUSK-TOP/kuskcore?label=latest%20release)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/KUSK-TOP/kuskcore/total)](https://github.com/KUSK-TOP/kuskcore/releases)
+[![KUSK Community](https://img.shields.io/discord/1217075571528564736?label=EIYARO%20Project%20Discord&logo=discord)](https://discord.gg/V4ue4CVMKY)
 
 
 ## What is Kusk?
