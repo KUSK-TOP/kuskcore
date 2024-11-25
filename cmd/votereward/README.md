@@ -28,7 +28,7 @@
     "xpub": "9742a39a0bcfb5b7ac8f56f1894fbb694b53ebf58f9a032c36cc22d57a06e49e94ff7199063fb7a78190624fa3530f611404b56fc9af91dcaf4639614512cb64", // Node public key (from dashboard Settings), replaced with its own
     "account_id": "bd775113-49e0-4678-94bf-2b853f1afe80", // accountID
     "password": "123456",// The password corresponding to the account ID
-    "reward_ratio": 20,// The percentage of a reward given to a voter per block
+    "reward_ratio": 95,// The percentage of a reward given to a voter per block
     "mining_address": "sk1qfpgjve27gx0r9t7vud8vypplkzytgrvqr74rwz" // The address that receives the block reward, use the get-mining- address for mining address, for example, curl -x POST http://127.0.0.1:9889/get-mining-address -d '{}'
   }
 }
