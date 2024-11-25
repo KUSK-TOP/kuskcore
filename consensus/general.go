@@ -22,13 +22,13 @@ const (
 
 	// These configs need add to casper config in elegant way
 	MaxNumOfValidators = int(1000)
-	InitKUSKSupply     = 60000000000000000
+	InitKUSKSupply     = 10000000000000000
 	RewardThreshold    = 0.5
 	BlockReward        = uint64(600000000)
 
 	// config parameter for coinbase reward
 	CoinbasePendingBlockNumber = uint64(10)
-	MinVoteOutputAmount        = uint64(1500000000000)
+	MinVoteOutputAmount        = uint64(1000000000000)
 
 	PayToWitnessPubKeyHashDataSize = 20
 	PayToWitnessScriptHashDataSize = 32
