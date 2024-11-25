@@ -43,8 +43,8 @@ $ git clone https://github.com/KUSK-TOP/kuskcore.git $GOPATH/src/github.com/kusk
 
 ``` bash
 $ cd $GOPATH/src/github.com/kuskcore
-$ make kuskd    # build kuskd
-$ make kuskcli  # build kuskcli
+$ make kuskd    # go build kuskd
+$ make kuskcli  # go build kuskcli
 ```
 
 When successfully building the project, the `kuskd` and `kuskcli` binary should be present in `cmd/kuskd` and `cmd/kuskcli` directory, respectively.
