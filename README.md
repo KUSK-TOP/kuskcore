@@ -1,7 +1,6 @@
 Kusk
 ======
 
-[![Build](https://github.com/KUSK-TOP/kuskcore/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/KUSK-TOP/kuskcore/actions)
 [![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
 [![Supports Linux](https://img.shields.io/badge/support-Linux-yellow?logo=Linux)](https://github.com/KUSK-TOP/kuskcore/releases/latest)
 [![License](https://img.shields.io/github/license/KUSK-TOP/kuskcore)](https://github.com/KUSK-TOP/kuskcore/blob/master/LICENSE)
