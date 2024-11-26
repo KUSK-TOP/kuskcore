@@ -11,7 +11,7 @@ Kusk Core
 
 ## What is Kusk?
 
-KUSK is a cryptocurrency created for low energy consumption, fast transactions, and decentralisation. For more details, see the [White Paper](https://kusk.top/KUSK-WhitePaper.html) for more details.
+KUSK is a cryptocurrency created for low energy consumption, fast transactions, and decentralisation. For more details, see the [White Paper](https://kusk.top/info/KUSK-WhitePaper.html) for more details.
 
 In the current state `kusk` is able to:
 
