@@ -23,13 +23,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
+      - name: Cache Go modules and build cache
+        uses: actions/cache@v3
         with:
-          # In order:
-          # * Module download cache
-          # * Build cache (Linux)
-          # * Build cache (Mac)
-          # * Build cache (Windows)
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
@@ -38,36 +34,14 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      # ==============================
-      #       Linux/Macos/Windows Build
-      # ==============================
 
-      - name: Build Binary for ${{matrix.os}}
+      - name: Build Binary for ${{ matrix.os }}
         run: make kuskd
 
-      # ==============================
-      #       Upload artifacts
-      # ==============================
-
-      - name: Upload Linux Build
-        uses: actions/upload-artifact@v2
-        if: matrix.os == 'ubuntu-20.04'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: linux
-          path: ./cmd/kuskd/kuskd
-
-      - name: Upload MacOS Build
-        uses: actions/upload-artifact@v2
-        if: matrix.os == 'macos-11'
-        with:
-          name: macos
-          path: ./cmd/kuskd/kuskd
-      
-      - name: Upload Windows Build
-        uses: actions/upload-artifact@v2
-        if: matrix.os == 'windows-2019'
-        with:
-          name: windows
+          name: ${{ matrix.os }}-build
           path: ./cmd/kuskd/kuskd
 
   release:
@@ -81,44 +55,38 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # ==============================
-      #       Download artifacts
-      # ==============================
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: ubuntu-20.04-build
+          path: ./linux
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: linux
-          path: ./linux
-      
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: macos
+          name: macos-11-build
           path: ./macos
-      
+
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: windows
+          name: windows-2019-build
           path: ./windows
 
-      # ==============================
-      #       Create release
-      # ==============================
       - name: Generate Change Log
         id: changelog
         run: |
-          chmod 755 ./.github/generate_change_log.sh
-          CHANGELOG=$(./.github/generate_change_log.sh ${{ env.RELEASE_VERSION}})
+          chmod +x ./.github/generate_change_log.sh
+          CHANGELOG=$(./.github/generate_change_log.sh ${{ env.RELEASE_VERSION }})
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           echo "$CHANGELOG" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
@@ -127,35 +95,32 @@ jobs:
           draft: false
           prerelease: false
 
-      # Check downloaded files
-      - run: ls
-
       - name: Upload Release Asset - Linux
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./linux/kuskd
           asset_name: kuskd_linux
           asset_content_type: application/octet-stream
-      
+
       - name: Upload Release Asset - MacOS
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./macos/kuskd
           asset_name: kuskd_mac
           asset_content_type: application/octet-stream
-      
+
       - name: Upload Release Asset - Windows
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./windows/kuskd
           asset_name: kuskd_windows.exe
           asset_content_type: application/octet-stream
