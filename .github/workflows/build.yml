@@ -1,0 +1,76 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@latest
+
+      - name: Set up Go
+        uses: actions/setup-go@latest
+        with:
+          go-version: '1.16'
+
+      - name: Get dependencies
+        run: go get -v -t -d ./...
+
+      - name: Build binaries
+        run: make kuskd kuskcli
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@latest
+        with:
+          name: Binaries
+          path: |
+            cmd/kuskd/kuskd
+            cmd/kuskcli/kuskcli
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download binaries
+        uses: actions/download-artifact@latest
+        with:
+          name: Binaries
+          path: ./downloaded-binaries
+
+      - name: Extract binaries
+        run: tar -xzf ./downloaded-binaries/Binaries.tar.gz -C ./released-binaries
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./released-binaries/kuskd
+          asset_name: kuskd
+          asset_content_type: application/octet-stream
+
+      - name: Upload kuskcli Release Asset
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./released-binaries/kuskcli
+          asset_name: kuskcli
+          asset_content_type: application/octet-stream
