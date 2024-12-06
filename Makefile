@@ -14,8 +14,6 @@ PACKAGES += 'core/mining/tensority/go_algorithm'
 
 BUILD_FLAGS := -ldflags "-X core/version.GitCommit=`git rev-parse HEAD`"
 
-#MINER_BINARY32 := miner-$(GOOS)_386
-MINER_BINARY64 := miner-$(GOOS)_amd64
 
 #KUSKD_BINARY32 := kuskd-$(GOOS)_386
 KUSKD_BINARY64 := kuskd-$(GOOS)_amd64
@@ -25,8 +23,6 @@ KUSKCLI_BINARY64 := kuskcli-$(GOOS)_amd64
 
 VERSION := $(shell awk -F= '/Version =/ {print $$2}' version/version.go | tr -d "\" ")
 
-#MINER_RELEASE32 := miner-$(VERSION)-$(GOOS)_386
-MINER_RELEASE64 := miner-$(VERSION)-$(GOOS)_amd64
 
 #KUSKD_RELEASE32 := kuskd-$(VERSION)-$(GOOS)_386
 KUSKD_RELEASE64 := kuskd-$(VERSION)-$(GOOS)_amd64
@@ -60,21 +56,20 @@ install:
 target:
 	mkdir -p $@
 
-binary: target/$(KUSKD_BINARY64) target/$(KUSKCLI_BINARY64) target/$(MINER_BINARY64)
+binary: target/$(KUSKD_BINARY64) target/$(KUSKCLI_BINARY64)
 
 ifeq ($(GOOS),windows)
 release: binary
-	cd target && cp -f $(MINER_BINARY64) $(MINER_BINARY64).exe
 	cd target && cp -f $(KUSKD_BINARY64) $(KUSKD_BINARY64).exe
 	cd target && cp -f $(KUSKCLI_BINARY64) $(KUSKCLI_BINARY64).exe
-	cd target && md5sum $(MINER_BINARY64).exe $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe >$(KUSK_RELEASE64).md5
-	cd target && zip $(KUSK_RELEASE64).zip $(MINER_BINARY64).exe $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe $(KUSK_RELEASE64).md5
-	cd target && rm -f $(MINER_BINARY64) $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(MINER_BINARY64).exe $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe $(KUSK_RELEASE64).md5
+	cd target && md5sum $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe >$(KUSK_RELEASE64).md5
+	cd target && zip $(KUSK_RELEASE64).zip $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe $(KUSK_RELEASE64).md5
+	cd target && rm -f $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(KUSKD_BINARY64).exe $(KUSKCLI_BINARY64).exe $(KUSK_RELEASE64).md5
 else
 release: binary
-	cd target && md5sum $(MINER_BINARY64) $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) >$(KUSK_RELEASE64).md5
-	cd target && tar -czf $(KUSK_RELEASE64).tgz $(MINER_BINARY64) $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(KUSK_RELEASE64).md5
-	cd target && rm -f $(MINER_BINARY64) $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(KUSK_RELEASE64).md5
+	cd target && md5sum $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) >$(KUSK_RELEASE64).md5
+	cd target && tar -czf $(KUSK_RELEASE64).tgz $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(KUSK_RELEASE64).md5
+	cd target && rm -f $(KUSKD_BINARY64) $(KUSKCLI_BINARY64) $(KUSK_RELEASE64).md5
 endif
 
 release-all: clean
@@ -102,8 +97,7 @@ target/$(KUSKD_BINARY64):
 target/$(KUSKCLI_BINARY64):
 	CGO_ENABLED=0 GOARCH=amd64 go build $(BUILD_FLAGS) -o $@ cmd/kuskcli/main.go
 
-target/$(MINER_BINARY64):
-	CGO_ENABLED=0 GOARCH=amd64 go build $(BUILD_FLAGS) -o $@ cmd/miner/main.go
+
 
 test:
 	@echo "====> Running go test"
