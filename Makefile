@@ -86,7 +86,6 @@ clean:
 	@echo "Cleaning binaries built..."
 	@rm -rf cmd/kuskd/kuskd
 	@rm -rf cmd/kuskcli/kuskcli
-	@rm -rf cmd/miner/miner
 	@rm -rf target
 	@rm -rf $(GOPATH)/bin/kuskd
 	@rm -rf $(GOPATH)/bin/kuskcli
