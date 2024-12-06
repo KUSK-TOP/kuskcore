@@ -1,0 +1,80 @@
+name: KUSK Main Workflow
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: write
+
+on:
+
+  push:
+    branches: [ main ]
+    tags: [ "*" ]
+    paths-ignore: [ "README.md", "CHANGELOG.md", "cliff.toml" ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    name: Build Applications
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkput
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build Server
+        run: make kuskd
+
+      - name: Build Client
+        run: make kuskcli
+
+  release:
+    if: contains(github.ref_type, 'tag')
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build Release
+        run: make release-all
+
+      - name: Generate Release Notes
+        id: git-cliff
+        uses: orhun/git-cliff-action@v2
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+        env:
+          OUTPUT: CHANGES.md
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: KUSK ${{ github.ref_name }}
+          body: ${{ steps.git-cliff.outputs.content }}
+          files: target/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
