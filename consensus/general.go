@@ -21,7 +21,7 @@ const (
 	MaxGasAmount   = int64(300000)
 
 	// These configs need add to casper config in elegant way
-	MaxNumOfValidators = int(1000)
+	MaxNumOfValidators = int(100)
 	InitKUSKSupply     = 10000000000000000
 	RewardThreshold    = 0.5
 	BlockReward        = uint64(600000000)
